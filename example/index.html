@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Вывод режимов работы (чего-либо) в читабельном виде</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script src="../mode-formatter.js"></script>
+		<style type="text/css">
+			body {
+				font: 1em/1.5 arial;
+				margin: 2em 4em;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Пример форматирования групп объектов и их времени работы</h2>
+
+		<script>
+			var modes = {
+				"branch": [
+					{"mode": ["9;20;13.00;13.30", "9;20;13.00;13.30", "9;20;13.00;13.30", "9;20;13.00;13.30", "9;20;13.00;13.30", "10;16;13.00;13.30", "11;14"]}
+				],
+				
+				"terminal": [
+					{"mode": ["9;20", "9;20", "9;20", "9;20", "9;20", "9;20", "9;20"]}
+				], 
+				
+				"atm": [
+					{"mode": ["9;20", "9;20", "9;20", "9;20", "9;20", "9;20", "9;20"]},
+					{"mode": ["9;20", "9;20", "9;20", "9;20", "9;20", "9;20", "9;20"]}
+				],
+				
+				"toilet": [
+					{"mode": ["0;24", "0;24", "0;24", "0;24", "0;24", "0;24", "0;24"]}
+				]
+			};
+
+			var opts = {
+				typeNames: {
+					"branch": ["отделение", "отделения"],
+					"terminal": ["терминал", "терминалы"],
+					"atm": ["банкомат", "банкоматы"],
+					"toilet": ["туалет", "туалеты"]
+				},
+				
+				dayNames: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
+				
+				noctidialName: "круглосуточно",
+				
+				typeDelimeterLast: "и"
+			};
+
+			//opts passed only in constructor
+			var formatter = new ModeFormatter(opts);
+		</script>
+
+		<h3>Группы объектов</h3>
+		<script>
+			//modes passed to render's call
+			document.write(formatter.render(modes));
+		</script>
+		
+		<h3>Только дни и время</h3>
+		<script>
+			document.write(formatter.renderModes(["9;18", "0;22", "0;24", "0;22", "0;24", "0;24;2:30;3:00", "0;24;2:30;3:00"]));
+		</script>
+	</body>
+</html>
