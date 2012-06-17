@@ -407,9 +407,7 @@ var ModeFormatter = (function () {
 				if (typeof this.aliases[s] != "undefined") {
 					return this.aliases[s];
 				}
-				
-				console.log(s)
-				
+
 				return s;
 			},
 
